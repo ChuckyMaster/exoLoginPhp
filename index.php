@@ -1,175 +1,5 @@
-<?php 
 
-
-$users = [ 
-    [
-    "username" => "chafouin",
-    "password" => "pingouin"
-],
-[
-    "username" => "pangolinSalé",
-    "password" => "pamplemousse"
-],
-[
-    "username" => "Marabout",
-    "password" => "pekinois"
-]];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$formulaire ="<form >
-<div class='form-group'> 
-<input type='text' name='username' placeholder='username'>
-
-
-</div>
-<div class='form-group'>
-<input type='text' name='password'  placeholder='password'>
-
-
-</div>
-<div class='form-group'> 
-    <button class='btn btn-secondary' type='submit' > Go go !  </button>
-</div>
-</form> ";
-
-$utilisateurInconnu = "Utilisateur Inconnu";
-$mdpErrone = "mot de passe érroné";
-$champsVides= "veuillez renseigner tous les champs";
-
-$messageErreur = "";
-$user = "";
-$pwd = "";
-$modeFormulaire = true;
-$secret =" <h2> La vie des baleines extra terrestre aurait été révélée par les pharaons du 12ème siècle antique, bien avant qu'il y ai
-ta face de marsien sur terre, une baleine extra terrestre c'est beaucoup plus jolie !!!!!";
-$contenueDeLaPage = "";
-
-
-if(isset($_GET['username']) && isset($_GET['password'])) 
-{ 
-  $pwdInput = $_GET['password'];
-  $userInput = $_GET['username'];
-};
-
- 
-  
-  if(!empty($userInput) && !empty($pwdInput)) {
-                  $userexist = false;
-                  $mdp;
-
-                  foreach($users as $user) {
-
-                    if($userInput == $user['username']) {
-                      $userexist = true;
-                      $mdp = $user['password'];
-                      echo "user exist";
-                    }
-                    
-                  };
-
-                  if($userexist){
-                    if($mdp == $pwdInput) {
-                            echo "good pwd";
-                            $modeFormulaire = false;
-                          } 
-                          else { 
-                            $messageErreur = $mdpErrone;
-                          }
-                   
-                  } else { 
-
-                    $messageErreur = $utilisateurInconnu;
-                  }
-
-
-
-                      // foreach($users as $user1) {
-
-//   if($user1['username'] == $user ) {
-//     $modeFormulaire = false;
-   
-//     echo "username good"; 
-//   } else { 
-//     $messageErreur = $utilisateurInconnu;
-//     if($user1['pwd'] ==$pwd) {
-//       echo "good pwd";
-//       $modeFormulaire = false;
-//     } else {
-//       $messageErreur = $mdpErrone;
-//     }
-//   }
- 
-// } 
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  } else  {
-    $messageErreur = $champsVides;
-  }
-
-
-  
-
-
-
-
-$modeFormulaire ? $contenueDeLaPage = $formulaire : $contenueDeLaPage = $secret;
-
-
-
-
-
-
-
-/* 
--aucun champ renseigné
--nom d'utilisateur non renseigné
--userame
--mot de passe non renseigné
--mauvais mot de passe
-
--> Si tout va bien, on ajoute "Bienvenue CalmWifi" avant de reveler le secret
-
-*/
-
-
-
-
-
-?>
-
-
-
-
-
-
+<?php include_once "logique.php"     ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,6 +8,7 @@ $modeFormulaire ? $contenueDeLaPage = $formulaire : $contenueDeLaPage = $secret;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.min.css">
+    
     <link rel="stylesheet" href="style.css">
     <title>Verif</title>
 </head>
@@ -226,6 +57,11 @@ $modeFormulaire ? $contenueDeLaPage = $formulaire : $contenueDeLaPage = $secret;
     <?=  $contenueDeLaPage ?>
 
     <p> <?= $messageErreur ?>  </p>
+
+
+
+
+   
     
 </body>
 </html>
